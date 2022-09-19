@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %} PNLF - Estadios {% endblock title %}
+
+{% block content %}
+
+<h1 style="background-color:rgb(3, 8, 26); color:azure; text-align:center"> Jugadores </h1>
+
+<p style="text-align:center"> En esta sección puede visualizar, añadir, editar y eliminar jugadores en el registro </p>
+
+&nbsp;&nbsp; <a class="btn btn-success" href="{% url 'app1:createJugador_view' %}" role="button">Añadir Jugador</a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" href="{% url 'app1:index_view' %}" role="button">Volver</a>
+
+<hr>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col" style="text-align: center">Nombre</th>
+        <th scope="col" style="text-align: center">Edad</th>
+        <th scope="col" style="text-align: center">Numero</th>
+        <th scope="col" style="text-align: center">Equipo actual</th>
+        <th scope="col" style="text-align: center">Fecha de ingreso</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for jugador in jugadores%}
+      <tr>
+        <td>{{ jugador.Nombre }}</td>
+        <td>{{ jugador.Edad }}</td>
+        <td>{{ jugador.Numero }}</td>
+        <td>{{ jugador.Eq_actual }}</td>
+        <td>{{ jugador.Fecha_ingreso }}</td>
+        <td>
+          <a href="{% url 'app1:editarJugador_view' pk=jugador.pk %}" class="btn btn-warning mb-3">Editar</a>
+          <a href="{% url 'app1:deleteJugador_view' pk=jugador.pk %}" class="btn btn-danger mb-3">Eliminar</a>
+        </td>
+      </tr>
+      {% endfor%}
+    </tbody>
+  </table>
+
+{% endblock content %}

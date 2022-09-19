@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %} PNLF - Estadios {% endblock title %}
+
+{% block content %}
+
+<h1 style="background-color:rgb(3, 8, 26); color:azure; text-align:center"> Estadios </h1>
+
+<p style="text-align:center"> En esta sección puede visualizar, añadir, editar y eliminar estadios en el registro </p>
+
+&nbsp;&nbsp; <a class="btn btn-success" href="{% url 'app1:createEstadio_view' %}" role="button">Añadir Estadio</a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" href="{% url 'app1:index_view' %}" role="button">Volver</a>
+
+<hr>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col" style="text-align: center">Nombre</th>
+        <th scope="col" style="text-align: center">Dueño</th>
+        <th scope="col" style="text-align: center">Capacidad</th>
+        <th scope="col" style="text-align: center">Equipos de partido</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for estadio in estadios%}
+      <tr>
+        <td>{{ estadio.Nombre }}</td>
+        <td>{{ estadio.Dueño }}</td>
+        <td>{{ estadio.Capacidad }}</td>
+        <td>{{ estadio.Eqs_partido }}</td>
+        <td>{{ estadio.Puntos_temp }}</td>
+        <td>
+          <a href="{% url 'app1:editarEstadio_view' pk=estadio.pk %}" class="btn btn-warning mb-3">Editar</a>
+          <a href="{% url 'app1:deleteEstadio_view' pk=estadio.pk %}" class="btn btn-danger mb-3">Eliminar</a>
+        </td>
+      </tr>
+      {% endfor%}
+    </tbody>
+  </table>
+
+{% endblock content %}

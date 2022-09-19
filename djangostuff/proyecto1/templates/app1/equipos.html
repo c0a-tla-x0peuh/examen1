@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %} PNLF - Equipos {% endblock title %}
+
+{% block content %}
+
+<h1 style="background-color:rgb(3, 8, 26); color:azure; text-align:center"> Equipos </h1>
+
+<p style="text-align:center"> En esta sección puede visualizar, añadir, editar y eliminar equipos en el registro </p>
+
+&nbsp;&nbsp; <a class="btn btn-success" href="{% url 'app1:createEquipo_view' %}" role="button">Añadir Equipo</a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" href="{% url 'app1:index_view' %}" role="button">Volver</a>
+
+<hr>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col" style="text-align: center">Nombre</th>
+        <th scope="col" style="text-align: center">Entrenador</th>
+        <th scope="col" style="text-align: center">Número de jugadores</th>
+        <th scope="col" style="text-align: center">Número de partidos</th>
+        <th scope="col" style="text-align: center">Puntos de la temporada</th>
+        <th scope="col" style="text-align: center">Clasificacion</th>
+        <th scope="col" style="text-align: center">Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for equipo in equipos%}
+      <tr>
+        <td>{{ equipo.Nombre }}</td>
+        <td>{{ equipo.Entrenador }}</td>
+        <td>{{ equipo.Num_jugadores }}</td>
+        <td>{{ equipo.Num_partidos }}</td>
+        <td>{{ equipo.Puntos_temp }}</td>
+        <td>{{ equipo.Clasificacion }}</td>
+        <td>
+          <a href="{% url 'app1:editarEquipo_view' pk=equipo.pk %}" class="btn btn-warning mb-3">Editar</a>
+          <a href="{% url 'app1:deleteEquipo_view' pk=equipo.pk %}" class="btn btn-danger mb-3">Eliminar</a>
+        </td>
+      </tr>
+      {% endfor%}
+    </tbody>
+  </table>
+
+{% endblock content %}

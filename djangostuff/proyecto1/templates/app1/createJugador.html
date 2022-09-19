@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %} PNLF - Jugadores {% endblock title %}
+
+{% block content %}
+
+<h1 style="background-color:rgb(3, 8, 26); color:azure; text-align:center"> Añadir Jugador </h1>
+
+    <form method = "POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Añadir</button>
+    </form>
+
+    <hr> 
+    &nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" href="{% url 'app1:jugadores_view' %}" role="button">Volver</a>
+
+{% endblock content %}
